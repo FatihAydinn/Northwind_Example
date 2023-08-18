@@ -1,0 +1,32 @@
+MVC olarak proje oluşturulur.
+
+Veritabanında bulunan tabloları çekmek için;
+scaffold-dbcontext "Server=(localdb)\mssqllocaldb;Database=NORTHWND;Trusted_Connection=True;Encrypt=False" Microsoft.EntityFrameworkCore.SqlServer -Output:Models -Context:NorthwindDbContext
+
+Veritabanarları yanında gelen DbContext sınıfı Program.cs'de tanımlanır;
+builder.Services.AddDbContext<NorthwindDbContext>();
+
+Controller içerisinde DbContext sınıfı DI ile tanımlanır;
+        private readonly NorthwindDbContext _context;
+
+        public EmployeeController(NorthwindDbContext context)
+        {
+            _context = context;
+        }
+
+Listeleme için gerekli View içerisinde bu context nesnesi List ile tanımlanır;
+        public IActionResult List()
+        {
+            List<Employee> list = _context.Employees.ToList();
+            return View(list);
+        }
+
+Personel bilgileri listelendi;
+	@Html.DisplayFor(x=>item.FirstName)
+
+Personel detay controller kodu;
+        public IActionResult Details(int id)
+        {
+            Employee employee = _context.Employees.Find(id);
+            return View(employee);
+        }

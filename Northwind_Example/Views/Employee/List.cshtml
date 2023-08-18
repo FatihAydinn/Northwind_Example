@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Northwind_Example.Models.Employee>
+<h1 style="text-align:center;text-decoration:underline">Employee List</h1>
+<br />
+<head>
+<style>
+    .hyperlink {
+        color:white;
+        text-decoration:none;
+    }
+    .hyperlink:hover
+    {
+        color:white;
+    }
+</style>
+</head>
+@foreach (var item in Model)
+{
+<ul>
+    <div class="row ">
+        <div class="col-1"></div>
+            <div class="col-10">
+                <li class="list-group-item">
+                    <div class="row" style="padding:5px;">
+                        <div class="col-2">@Html.DisplayFor(x=>item.FirstName)</div>
+                        <div class="col-2">@Html.DisplayFor(x=>item.LastName)</div>
+                        <div class="col-3">@Html.DisplayFor(x=>item.Title)</div>
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <button class="btn btn-sm btn-success">@Html.ActionLink("Siparişler","OrderList","Order",new {id=item.EmployeeId},new{@class="hyperlink"})</button>
+
+
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-sm btn-primary">@Html.ActionLink("Profil","Details",new {id=item.EmployeeId},new{@class="hyperlink"})</button>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <div class="col-1"></div>
+     </div>
+</ul>
+
+
+}

@@ -1,0 +1,27 @@
+﻿@model List<OrderDetail>
+
+<div style="text-align:right;">
+    <button class="btn btn-lg btn-danger">@Html.ActionLink("Back to List","List","Employee",new{},new{@class="hyperlink"})</button>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Discount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model)
+        {
+            <tr>
+                <td>@detail.Product.ProductName</td>
+                <td>@detail.Quantity</td>
+                <td>@detail.UnitPrice</td>
+                <td>@detail.Discount</td>
+            </tr>
+        }
+    </tbody>
+</table>
